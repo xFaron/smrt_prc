@@ -1,0 +1,8 @@
+# YOLOv11 config file
+
+path: ../data/processed/roi # dataset root dir
+train: images/train 
+val: images/val 
+
+names:
+  0: floorplan
