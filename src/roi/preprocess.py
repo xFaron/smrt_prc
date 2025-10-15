@@ -29,7 +29,7 @@ class SimpleSVGLoader(Dataset):
         target = self.get_data(index)
         return target
 
-    def get_data(self, index):
+    def get_data(self, index): 
         folder = self.folders[index]
 
         with Image.open(
@@ -178,11 +178,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "--val",
         type=int,
-        help="Enter the amount of training images to process (default = full)",
+        help="Enter the amount of validation images to process (default = full)",
         default=None,
+    )
+    parser.add_argument(
+        "--remove",
+        type=int,
+        help="All images will be removed which were preprocessed earlier",
+        default=False,
     )
 
     args = parser.parse_args()
+
+    if (args.remove):
+        os.remove()
 
     train_dataset = SimpleSVGLoader(data_folder, train_file)
     val_dataset = SimpleSVGLoader(data_folder, val_file)
