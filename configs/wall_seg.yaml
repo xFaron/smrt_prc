@@ -1,0 +1,17 @@
+# Preprocessing config for wall_seg
+
+data_folder: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k"
+
+train_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/train"
+train_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/train.txt"
+train_tensor_split: "train_tensor"
+# Means full
+train_count: -1
+
+val_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/val"
+val_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/val.txt"
+val_tensor_split: "val_tensor"
+
+test_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/test"
+test_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/test.txt"
+test_tensor_split: "test_tensor"
