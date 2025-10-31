@@ -1,17 +1,55 @@
-# Preprocessing config for wall_seg
+# --------------------------------------------------
+# Configuration for wall_seg project
+# --------------------------------------------------
 
-data_folder: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k"
+# --- Input Paths ---
+data_folder: ./data/external/CubiCasa5k/data/cubicasa5k
+train_file: ./data/external/CubiCasa5k/data/cubicasa5k/train.txt
+val_file: ./data/external/CubiCasa5k/data/cubicasa5k/val.txt
 
-train_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/train"
-train_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/train.txt"
-train_tensor_split: "train_tensor"
-# Means full
-train_count: -1
+# --- Processed Data Paths ---
+# Used by preprocess.py (output) and train.py (input)
+train_dest: ./data/processed/wall_seg/train
+val_dest: ./data/processed/wall_seg/val
 
-val_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/val"
-val_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/val.txt"
-val_tensor_split: "val_tensor"
+# --- Cache ---
+hub_cache_dir: ./.torch_cache
 
-test_dest: "/home/xfaron/Desktop/Code/Playground/test_construction/data/processed/wall_seg/test"
-test_file: "/home/xfaron/Desktop/Code/Playground/test_construction/data/external/CubiCasa5k/data/cubicasa5k/test.txt"
-test_tensor_split: "test_tensor"
+# --- Preprocessing Parameters ---
+preprocessing:
+  preprocess_train: true
+  max_train_images: 100 # No of images # Replace with -1 for full preprocessing
+  preprocess_val: true
+  max_val_images: 20
+  
+  crop_size: 512
+  overlap: 64
+  min_content_ratio: 0.1
+  batch_size: 128  # Will auto-adjust based on available memory
+
+# --- Training Parameters ---
+training:
+  epochs: 20
+  # Training batch size
+  batch_size: 16
+  lr: 0.001
+  momentum: 0.9
+  num_workers: 1
+  # Set to true to disable validation loop
+  no_val: false
+
+
+# --- Experiment Parameters ---
+experiment:
+  # Directory to save checkpoints
+  exp_dir: ./experiments
+  # Experiment name (if null, a timestamped name is generated)
+  exp_name: wall_seg_nano
+
+# --- Validation Parameters ---
+# Used when running validate.py as a script
+validation:
+  # Number of samples to visualize
+  num_samples: 5
+  # Batch size for validation (1 is best for visualization)
+  batch_size: 1
